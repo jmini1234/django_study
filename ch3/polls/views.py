@@ -12,6 +12,7 @@ def index(request):
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id) #filter가능 ,list 비어있으면 error
     return render(request, 'polls/detail.html', {'question': question})
+    #넘어온 params에 맞는 question을 불러온다. 
 
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
