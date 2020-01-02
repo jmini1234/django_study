@@ -3,16 +3,27 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from polls.models import Question
 
+
+from django.views.generic import ListView
+
 # Create your views here.
-def index(request):
-    latest_question_list = Question.objects.all().order_by('-pub_date')[:5]
-    context = {'latest_question_list': latest_question_list} #python 사전 type으로 data 전달
-    return render(request, 'polls/index.html', context)
+# def index(request):
+#     latest_question_list = Question.objects.all().order_by('-pub_date')[:5]
+#     context = {'latest_question_list': latest_question_list} #python 사전 type으로 data 전달
+#     return render(request, 'polls/index.html', context)
+
+class IndexView(ListView):
+    model = Question
+    context_object_name = 'latest_question_list'
+    template_name = 'polls/index.html'
+
+    def get_queryset(selt):
+        return Question.objects.order_by('-pub_date')[:5]
 
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id) #filter가능 ,list 비어있으면 error
     return render(request, 'polls/detail.html', {'question': question})
-    #넘어온 params에 맞는 question을 불러온다. 
+    #넘어온 params에 맞는 question을 불러온다.
 
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
