@@ -1,0 +1,11 @@
+{% extends 'blog/blog_base.html' %}
+
+{% block content %}
+
+<form action="" method="post"> <!--없으면 현재 url로 post-->
+  {% csrf_token %}
+  {{form.as_table}}
+  <input type="submit" value="submit">
+</form>
+
+{% endblock%}

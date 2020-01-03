@@ -19,4 +19,5 @@ from django.urls import include,path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')), #polls/ 까지는 여기서 , 그 이후에는 polls.urls 파일에서 routing
+    path('blog/',include('blog.urls')),
 ]

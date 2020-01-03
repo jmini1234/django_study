@@ -1,0 +1,16 @@
+{% extends 'blog/blog_base.html' %}
+
+{% block content %}
+
+{% if post %}
+  <ul>
+    {% for post in post %}
+      <li><a href="/blog/{{post.id}}">{{post.title}}</a></li>
+    {% endfor %}
+  </ul>
+
+{% else %}
+  <p>no blogs are available</p>
+{% endif %}
+
+{% endblock%}
