@@ -13,5 +13,15 @@
   <a class="btn btn-default" href="{% url 'blog:update' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
   <a class="btn btn-default" href="{% url 'blog:delete' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
 
+  <hr>
+  {% for comment in post.comments.all %}
+      <div class="comment">
+          <div class="date">{{ comment.created_date }}</div>
+          <strong>{{ comment.author }}</strong>
+          <p>{{ comment.text|linebreaks }}</p>
+      </div>
+  {% empty %}
+      <p>No comments here yet :(</p>
+  {% endfor %}
 
 {% endblock%}
