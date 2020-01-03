@@ -38,3 +38,10 @@ def update(request,pk):
     else:
         form = PostForm(instance=post)
     return render(request,'blog/update.html',{'form':form})
+
+def add_comment_to_post(request,pk):
+    post = get_object_or_404(Post,pk=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST,instance=post)
+        if form.is_valid():
+            comment = form.save()

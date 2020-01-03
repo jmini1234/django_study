@@ -15,6 +15,9 @@
 
   <hr>
   {% for comment in post.comments.all %}
+
+  <a class="btn btn-default" href="{% url 'blog:add_comment_to_post' pk=post.pk %}">Add comment</a>
+
       <div class="comment">
           <div class="date">{{ comment.created_date }}</div>
           <strong>{{ comment.author }}</strong>
